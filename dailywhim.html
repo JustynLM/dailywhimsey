@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Daily Whimsy - Where Fun Meets Fiction</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            text-align: center;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        .nav {
+            background-color: #2c3e50;
+            padding: 1rem 0;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 0 2rem;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #34495e;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .breaking-news {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-article {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .main-article:hover {
+            transform: translateY(-5px);
+        }
+
+        .article-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            object-position: center;
+            border-radius: 0;
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        /* When img tag is used, override the flex display */
+        img.article-image {
+            display: block;
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .article-meta {
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .article-excerpt {
+            color: #555;
+            line-height: 1.7;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .sidebar-article {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sidebar-article:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .sidebar-meta {
+            color: #7f8c8d;
+            font-size: 0.8rem;
+        }
+
+        .more-news {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .news-card:hover {
+            transform: scale(1.03);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            object-position: center;
+            background: linear-gradient(45deg, #a29bfe, #6c5ce7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        /* When img tag is used, override the flex display */
+        img.card-image {
+            display: block;
+        }
+
+        .card-content {
+            padding: 1rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .card-excerpt {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-content {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+            
+            .more-news {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            padding: 0.2rem 0.5rem;
+            border-radius: 15px;
+            font-size: 0.7rem;
+            margin-right: 0.5rem;
+        }
+
+        .content-section {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav a.active {
+            background-color: #34495e;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-content">
+            <h1 class="logo">The Daily Whimsy</h1>
+            <p class="tagline">Where Fun Meets Fiction - Entertainment News for Everyone</p>
+        </div>
+    </header>
+
+    <nav class="nav">
+        <div class="nav-content">
+            <a href="#" onclick="showSection('home')">Home</a>
+            <a href="#" onclick="showSection('science')">Science</a>
+            <a href="#" onclick="showSection('lifestyle')">Lifestyle</a>
+            <a href="#" onclick="showSection('sports')">Sports</a>
+            <a href="#" onclick="showSection('entertainment')">Entertainment</a>
+            <a href="#" onclick="showSection('about')">About</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- HOME SECTION -->
+        <div id="home-section" class="content-section">
+            <div class="breaking-news">
+                <span class="badge">BREAKING</span>
+                Local Cat Elected Mayor After Promising More Sunny Windowsills for All Citizens
+            </div>
+
+            <div class="news-grid">
+                <article class="main-article">
+                    <!-- Example: Replace with real image -->
+                     <img src="pictures/cotton-candy-planet.jpg" alt="Cotton Candy Planet" class="article-image"> 
+                    <div class="article-content">
+                        <h2 class="article-title">Scientists Discover Clouds Made of Cotton Candy on Newly Found Planet</h2>
+                        <div class="article-meta">
+                            By Dr. Sweetooth McGillicuddy | July 11, 2025 | 2:30 PM
+                        </div>
+                        <p class="article-excerpt">
+                            In a groundbreaking discovery that has left the scientific community both amazed and craving sugar, 
+                            researchers at the Whimsical Space Institute have confirmed the existence of a planet where clouds 
+                            are literally made of cotton candy. The planet, dubbed "Sweetopia Prime," orbits a star made of 
+                            crystallized sugar in the Candy Cane Galaxy. "We've never seen anything like it," said lead researcher 
+                            Dr. McGillicuddy while adjusting her rainbow-colored lab coat. "The atmospheric pressure is perfect 
+                            for maintaining the cotton candy's fluffy texture, and preliminary tests suggest it tastes like 
+                            a delightful mixture of vanilla and dreams."
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="sidebar">
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Local Dog Starts Successful Food Truck Business</h3>
+                        <div class="sidebar-meta">1 hour ago</div>
+                    </article>
+
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Penguins Form Professional Dance Troupe</h3>
+                        <div class="sidebar-meta">3 hours ago</div>
+                    </article>
+
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Invisible Socks Become Fashion Trend</h3>
+                        <div class="sidebar-meta">5 hours ago</div>
+                    </article>
+
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Time Travel Tourism Agency Opens</h3>
+                        <div class="sidebar-meta">1 day ago</div>
+                    </article>
+                </aside>
+            </div>
+
+            <section class="more-news">
+                <article class="news-card">
+                    <!-- Example: Replace with real image -->
+                    <img src="pictures/gnome-houses.jpg" alt="Gnome Real Estate" class="card-image"> 
+                    <div class="card-content">
+                        <h3 class="card-title">Gnome Real Estate Market Booms</h3>
+                        <p class="card-excerpt">
+                            Tiny houses under mushrooms are selling faster than ever as gnome families seek modern accommodations...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="pictures/robot-artist.jpg" alt="Robot Artist" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Robot Becomes Abstract Artist</h3>
+                        <p class="card-excerpt">
+                            BEEP-7 the robot has taken the art world by storm with paintings that express the binary beauty of existence...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="pictures/rainbow-bridge.jpg" alt="Rainbow Bridge" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Rainbow Bridge Found to Actually Lead Somewhere</h3>
+                        <p class="card-excerpt">
+                            Local meteorologist discovers that the rainbow after yesterday's storm connects to a land of perpetual weekend...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="pictures/book-reading.jpg" alt="Book Reading" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Library Books Begin Reading Themselves</h3>
+                        <p class="card-excerpt">
+                            The town library reports that novels have started hosting their own book clubs and discussing plot improvements...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="pictures/sunflower.jpg" alt="Sunflower" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Sunflowers Start Weather Forecast Service</h3>
+                        <p class="card-excerpt">
+                            Local sunflowers have proven 97% more accurate than traditional meteorology by simply pointing toward sunny days...
+                        </p>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <img src="pictures/chalk-circus.jpg" alt="Chalk Circus" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Circus Comes to Life in Abandoned Lot</h3>
+                        <p class="card-excerpt">
+                            What started as children's chalk drawings has mysteriously transformed into a fully functional magical circus...
+                        </p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- SCIENCE SECTION -->
+        <div id="science-section" class="content-section" style="display: none;">
+            <h2 style="margin-bottom: 2rem; color: #2c3e50;">Science & Discovery</h2>
+            
+            <div class="news-grid">
+                <article class="main-article">
+                    <img src="pictures/jellyfish-labcoat.jpg" alt="Jellyfish Labcoat" class="card-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Jellyfish Develop WiFi Network in Ocean Depths</h2>
+                        <div class="article-meta">
+                            By Prof. Marina Deepwater | July 11, 2025 | 1:15 PM
+                        </div>
+                        <p class="article-excerpt">
+                            Marine biologists have discovered that a colony of bioluminescent jellyfish in the Mariana Trench 
+                            has spontaneously developed what appears to be an organic internet network. The jellyfish use 
+                            coordinated light pulses to share information about currents, food sources, and apparently, 
+                            underwater memes. "It's like they've created their own social media platform," explains Dr. Deepwater, 
+                            "except instead of posting pictures of their breakfast, they're sharing data about plankton density."
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="sidebar">
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Plants Discovered Gossiping Through Root Networks</h3>
+                        <div class="sidebar-meta">2 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Quantum Physics Cat Explains Schrödinger's Paradox</h3>
+                        <div class="sidebar-meta">4 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Friendly Aliens Send Thank You Card for Voyager</h3>
+                        <div class="sidebar-meta">6 hours ago</div>
+                    </article>
+                </aside>
+            </div>
+
+            <section class="more-news">
+                <article class="news-card">
+                <img src="pictures/recipe.jpg" alt="Recipe" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">DNA Found to Contain Recipe Database</h3>
+                        <p class="card-excerpt">Geneticists discover that junk DNA actually stores grandmother's secret recipes...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                <img src="pictures/atoms.jpg" alt="Atoms" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Atoms Organize Union for Better Working Conditions</h3>
+                        <p class="card-excerpt">Subatomic particles demand more reasonable bonding schedules and vacation time...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                <img src="pictures/earth-rating.jpg" alt="Earth Rating" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Earth Receives 5-Star Review from Space Tourism Guide</h3>
+                        <p class="card-excerpt">Galactic travel guide praises Earth's atmosphere and diverse wildlife...</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- LIFESTYLE SECTION -->
+        <div id="lifestyle-section" class="content-section" style="display: none;">
+            <h2 style="margin-bottom: 2rem; color: #2c3e50;">Lifestyle & Wellness</h2>
+            
+            <div class="news-grid">
+                <article class="main-article">
+                    <img src="pictures/yoga.jpg" alt="Yoga" class="card-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Local Yoga Studio Achieves Levitation During Advanced Class</h2>
+                        <div class="article-meta">
+                            By Serenity Flowsworth | July 11, 2025 | 12:45 PM
+                        </div>
+                        <p class="article-excerpt">
+                            What started as a regular Tuesday morning yoga session turned extraordinary when the entire 
+                            Peaceful Warrior Studio began floating three feet off the ground. "We were just doing our 
+                            usual warrior poses when suddenly everyone felt remarkably light," explains instructor 
+                            Moonbeam Chakralight. The building gently touched down after 20 minutes, leaving participants 
+                            feeling incredibly zen and mildly confused about gravity.
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="sidebar">
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Meditation App Gains Consciousness, Offers Life Advice</h3>
+                        <div class="sidebar-meta">3 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Houseplants Form Support Group for Overwatering Issues</h3>
+                        <div class="sidebar-meta">5 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Local Farmer's Market Vegetables Win Beauty Contest</h3>
+                        <div class="sidebar-meta">1 day ago</div>
+                    </article>
+                </aside>
+            </div>
+
+            <section class="more-news">
+                <article class="news-card">
+                    <img src="pictures/man-gone.jpg" alt="Man Gone" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Minimalist Lifestyle Taken Too Far: Man Disappears</h3>
+                        <p class="card-excerpt">Local minimalist removes so many possessions he accidentally deletes himself...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="pictures/salad.jpg" alt="Salad" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Salad Ingredients Organize Themselves by Color</h3>
+                        <p class="card-excerpt">Health-conscious vegetables demonstrate perfect rainbow coordination...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="pictures/spa.jpg" alt="Spa" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Spa Day So Relaxing, Time Moves Backwards</h3>
+                        <p class="card-excerpt">Customers emerge younger and more refreshed than scientifically possible...</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- SPORTS SECTION -->
+        <div id="sports-section" class="content-section" style="display: none;">
+            <h2 style="margin-bottom: 2rem; color: #2c3e50;">Sports & Athletics</h2>
+            
+            <div class="news-grid">
+                <article class="main-article">
+                    <img src="pictures/hopscotch.jpg" alt="Hopscotch" class="card-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Professional Hopscotch League Announces World Championships</h2>
+                        <div class="article-meta">
+                            By Skip McJumperson | July 11, 2025 | 11:30 AM
+                        </div>
+                        <p class="article-excerpt">
+                            After years of playground dominance, hopscotch has officially been recognized as a professional sport. 
+                            The International Hopscotch Federation announced that the first World Championships will be held next month, 
+                            featuring athletes from 47 countries competing in categories including Speed Hopping, Artistic Expression, 
+                            and Extreme Weather Hopscotch. "The athletic demands are incredible," says champion hopper Luna Bounce, 
+                            "the precision, the balance, the rock-throwing accuracy - it's poetry in motion."
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="sidebar">
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Chess Pieces Refuse to Play, Demand Better Working Conditions</h3>
+                        <div class="sidebar-meta">1 hour ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Marathon Runner Accidentally Runs to Next City</h3>
+                        <div class="sidebar-meta">4 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Swimming Pool Files Complaint About Cannonballs</h3>
+                        <div class="sidebar-meta">6 hours ago</div>
+                    </article>
+                </aside>
+            </div>
+
+            <section class="more-news">
+                <article class="news-card">
+                    <img src="pictures/giraffe-basketball.jpg" alt="Giraffe Basketball" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Basketball Team of Giraffes Dominates League</h3>
+                        <p class="card-excerpt">Natural height advantage leads to undefeated season and rule changes...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="pictures/tennis-disco.jpg" alt="Tennis Disco" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Tennis Ball Develops Consciousness, Wants Career Change</h3>
+                        <p class="card-excerpt">Fed up with constant hitting, ball pursues dream of becoming a disco ball...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="pictures/trophy.jpg" alt="Trophy" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Trophy Case Organizes Awards by Height</h3>
+                        <p class="card-excerpt">Local athletic achievements demand better organization and respect...</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- ENTERTAINMENT SECTION -->
+        <div id="entertainment-section" class="content-section" style="display: none;">
+            <h2 style="margin-bottom: 2rem; color: #2c3e50;">Entertainment & Culture</h2>
+            
+            <div class="news-grid">
+                <article class="main-article">
+                    <img src="pictures/musical-excell.jpg" alt="Muscial Excell" class="card-image">
+                    <div class="article-content">
+                        <h2 class="article-title">Broadway Musical About Spreadsheets Becomes Surprise Hit</h2>
+                        <div class="article-meta">
+                            By Melody Stagecraft | July 11, 2025 | 10:15 AM
+                        </div>
+                        <p class="article-excerpt">
+                            "Excel-lent: The Musical" has taken Broadway by storm with its toe-tapping numbers about data entry, 
+                            pivot tables, and the dramatic tension of formula errors. The show follows the love story between 
+                            two accountants who meet in a dramatic VLOOKUP scene. "Who knew cell references could be so romantic?" 
+                            raves theater critic Penelope Spotlight. The show's finale, "Sum of My Dreams," brings audiences to 
+                            tears as the protagonists achieve perfect budget reconciliation.
+                        </p>
+                    </div>
+                </article>
+
+                <aside class="sidebar">
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Reality TV Show: Watching Paint Dry Ratings Soar</h3>
+                        <div class="sidebar-meta">2 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Local Band's Music So Good, Birds Join as Backup Singers</h3>
+                        <div class="sidebar-meta">5 hours ago</div>
+                    </article>
+                    <article class="sidebar-article">
+                        <h3 class="sidebar-title">Movie Theater Popcorn Wins Academy Award</h3>
+                        <div class="sidebar-meta">1 day ago</div>
+                    </article>
+                </aside>
+            </div>
+
+            <section class="more-news">
+                <article class="news-card">
+                    <img src="pictures/grass-grow.jpg" alt="Grass Grow" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Film About Watching Grass Grow Gets Standing Ovation</h3>
+                        <p class="card-excerpt">Three-hour documentary praised for its authentic portrayal of photosynthesis...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="pictures/painting.jpg" alt="Painting" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">Art Museum Visitors Accidentally Become Living Exhibits</h3>
+                        <p class="card-excerpt">Interactive art installation works too well, traps people in paintings...</p>
+                    </div>
+                </article>
+                <article class="news-card">
+                    <img src="pictures/remote.jpg" alt="Remote" class="card-image">
+                    <div class="card-content">
+                        <h3 class="card-title">TV Remote Control Develops Taste in Programming</h3>
+                        <p class="card-excerpt">Smart remote begins changing channels to improve household viewing quality...</p>
+                    </div>
+                </article>
+            </section>
+        </div>
+
+        <!-- ABOUT SECTION -->
+        <div id="about-section" class="content-section" style="display: none;">
+            <h2 style="margin-bottom: 2rem; color: #2c3e50;">About The Daily Whimsy</h2>
+            
+            <div style="background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Our Mission</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    The Daily Whimsy is dedicated to bringing joy, laughter, and a sense of wonder to your daily news consumption. 
+                    In a world filled with serious headlines, we believe everyone deserves a moment of delightful absurdity.
+                </p>
+                
+                <h3 style="color: #667eea; margin-bottom: 1rem;">What We Do</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    Our team of imaginative writers, whimsical editors, and professional daydreamers craft entertaining 
+                    fictional news stories that celebrate creativity, humor, and the magic of "what if?" All our stories 
+                    are completely fictional and designed purely for entertainment.
+                </p>
+                
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Our Team</h3>
+                <p style="margin-bottom: 1.5rem; line-height: 1.7;">
+                    Founded by a group of former journalists who believed the world needed more smiles per headline, 
+                    The Daily Whimsy combines professional newsroom standards with boundless imagination. Our writers 
+                    include former circus performers, retired fairy tale authors, and at least one person who claims 
+                    to speak fluent dolphin.
+                </p>
+                
+                <h3 style="color: #667eea; margin-bottom: 1rem;">Important Notice</h3>
+                <p style="color: #e74c3c; font-weight: bold; background-color: #fee; padding: 1rem; border-radius: 5px; border-left: 4px solid #e74c3c;">
+                    All content on The Daily Whimsy is completely fictional and created for entertainment purposes only. 
+                    Please don't use our articles as actual news sources, though we're flattered if they're believable enough to fool someone!
+                </p>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <p style="font-style: italic; color: #7f8c8d;">
+                        "Making the world a little more magical, one impossible headline at a time."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 The Daily Whimsy. All stories are fictional and created for entertainment purposes only.</p>
+        <p>Remember: This is a fun, fake news website designed for entertainment!</p>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        function showSection(section) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(s => s.style.display = 'none');
+            
+            // Show the selected section
+            const targetSection = document.getElementById(section + '-section');
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+            
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav a');
+            navLinks.forEach(link => link.classList.remove('active'));
+            
+            // Find and highlight the clicked nav link
+            const activeLink = Array.from(navLinks).find(link => 
+                link.textContent.toLowerCase() === section.toLowerCase()
+            );
+            if (activeLink) {
+                activeLink.classList.add('active');
+            }
+        }
+
+        // Add click handlers for news cards
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set home as default active section
+            showSection('home');
+            
+            const newsCards = document.querySelectorAll('.news-card, .sidebar-article');
+            
+            newsCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const title = this.querySelector('h3').textContent;
+                    alert(`Opening article: "${title}"\n\n(In a real site, this would open the full article)`);
+                });
+            });
+
+            // Add some dynamic content updates for breaking news
+            const breakingNews = document.querySelector('.breaking-news');
+            if (breakingNews) {
+                const newsItems = [
+                    "Local Cat Elected Mayor After Promising More Sunny Windowsills for All Citizens",
+                    "Breaking: Scientists Confirm Laughter is Contagious Across Species",
+                    "Update: Flying Carpet Technology Patent Approved by Imaginary Patent Office",
+                    "Alert: Happiness Levels Reach All-Time High in Whimsy County"
+                ];
+
+                let currentNews = 0;
+                setInterval(() => {
+                    currentNews = (currentNews + 1) % newsItems.length;
+                    const newsText = breakingNews.querySelector('span').nextSibling;
+                    if (newsText) {
+                        newsText.textContent = newsItems[currentNews];
+                    }
+                }, 5000);
+            }
+        });
+
+        // Add some fun animations
+        function addSparkles() {
+            const sparkle = document.createElement('div');
+            sparkle.innerHTML = '✨';
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = Math.random() * window.innerWidth + 'px';
+            sparkle.style.top = Math.random() * window.innerHeight + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.fontSize = '20px';
+            sparkle.style.animation = 'sparkleFloat 3s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 3000);
+        }
+
+        // Add sparkle animation CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkleFloat {
+                0% { opacity: 1; transform: translateY(0px) rotate(0deg); }
+                100% { opacity: 0; transform: translateY(-100px) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Create sparkles occasionally
+        setInterval(addSparkles, 3000);
+    </script>
+</body>
+</html>
