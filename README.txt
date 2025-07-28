@@ -1,4 +1,4 @@
-The Daily Whimsy 📰✨
+The Daily Whimsy
 A Fun, Whimsical News Website with Completely Fictional Stories
 The Daily Whimsy is a professional-looking news website that delivers joy, laughter, and wonder through completely fictional news stories. 
 From cotton candy clouds on distant planets to professional hopscotch championships, every headline is designed to bring a smile to your face!
